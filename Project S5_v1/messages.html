@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: #F7F4F0; /* Light background */
+            color: #314D6D; /* Main color */
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #314D6D; /* Main color */
+            color: #F7F4F0; /* Light background */
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 1.5em;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            height: 100px;
+        }
+
+        header .logo {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #F7F4F0;
+            padding: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        nav .logo-container h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #314D6D;
+        }
+
+        nav .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav .navbar a {
+            text-decoration: none;
+            color: #314D6D;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav .navbar a.active, nav .navbar a:hover {
+            color: #FF9248;
+        }
+
+        /* Main Content */
+        .layout {
+            display: flex;
+            margin-top: 150px; /* Adjust for header */
+        }
+
+        .chat-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .chat-sidebar {
+            width: 25%;
+            padding: 20px;
+            background: #F7F4F0;
+            border-right: 1px solid #ccc;
+        }
+
+        .chat-sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .chat-sidebar ul {
+            list-style: none;
+        }
+
+        .chat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #FFD87E;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .chat-item:hover {
+            background: #FF9248;
+        }
+
+        .chat-window {
+            width: 75%;
+            padding: 20px;
+        }
+
+        .chat-header {
+            margin-bottom: 20px;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            background: #FFFFFF;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 20px;
+            max-width: 70%;
+            margin: 5px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .message.from {
+            align-self: flex-start;
+            background-color: #B0C4D4;
+        }
+
+        .message.to {
+            align-self: flex-end;
+            background-color: #FF9248;
+            color: white;
+        }
+
+        .chat-input {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background-color: #FF9248;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #314D6D;
+            color: #F7F4F0;
+        }
+
+        footer a {
+            color: #FFD87E;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Health Dashboard</div>
+    </header>
+
+    <nav>
+        <div class="logo-container">
+            <h1>HealMount</h1>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="appointments.html">Appointments</a></li>
+                <li><a href="patients.html">Patients</a></li>
+                <li><a href="messages.html" class="active">Messages</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="layout">
+        <div class="chat-container">
+            <div class="chat-sidebar">
+                <h2>Chats</h2>
+                <ul id="chat-list">
+                    <li class="chat-item">
+                        <span class="chat-name">John Doe</span>
+                        <button class="video-call-btn">🎥</button>
+                    </li>
+                    <li class="chat-item">
+                        <span class="chat-name">Jane Smith</span>
+                        <button class="video-call-btn">🎥</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="chat-window">
+                <div class="chat-header">
+                    <h3>Chat with John Doe</h3>
+                </div>
+                <div class="chat-messages">
+                    <div class="message from">
+                        <p>Hello! How are you?</p>
+                    </div>
+                    <div class="message to">
+                        <p>I'm good, thanks! How about you?</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Type a message...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>HealMount - All Rights Reserved</p>
+        <p><a href="contact.html">Contact Support</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

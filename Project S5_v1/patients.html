@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+    <link rel="stylesheet" href="css/style.css">
+    <head>
+        <style>
+            /* Basic reset and layout */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            body {
+                display: flex;
+                font-family: Nunito, sans-serif;
+                margin-top: 100px; /* Added margin to prevent content being hidden under the fixed header */
+            }
+    
+            /* Header */
+            .header {
+                background-color: #003366; /* Blue color */
+                color: #F7F4F0; /* Light background */
+                padding: 40px 20px; /* Adjust top-bottom padding for thickness */
+                text-align: center;
+                font-size: 1.5em; /* Adjust the text size */
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                height: 100px; /* Adjust the height of the header */
+            }
+    
+            .header .logo {
+                font-size: 1em;
+                font-weight: bold;
+            }
+    
+            /* Sidebar Styles */
+            nav.sidebar {
+                height: 200vh;
+                width: 250px;
+                background-color: #ecf0f1;
+                position: fixed;
+                top: 0px; 
+                left: 0;
+                color: #ecf0f1;
+            }
+    
+            .logo-container {
+                padding: 20px;
+                background-color: #ecf0f1;
+                text-align: center;
+            }
+    
+            .logo-container h1 {
+                font-size: 24px;
+            }
+    
+            .navbar ul {
+                list-style: none;
+                padding: 0;
+            }
+    
+            .navbar ul li {
+                margin: 20px 0;
+            }
+    
+            .navbar ul li a {
+                display: block;
+                color: #003366;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px;
+                text-align: left;
+            }
+    
+            .navbar ul li a:hover {
+                background-color: #34495e;
+                text-decoration: underline;
+            }
+    
+            .navbar ul li a.active {
+                background-color: #FF9248;
+            }
+    
+            /* Main content styles */
+            main {
+                margin-left: 250px;
+                padding: 20px;
+                flex-grow: 1;
+            }
+    
+            .home-section,
+            .page-section {
+                margin-bottom: 20px;
+            }
+    
+            .home-card {
+                background-color: #ecf0f1;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+    
+            .home-card-header {
+                font-size: 20px;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
+    
+            .home-card-body p {
+                margin-bottom: 10px;
+            }
+    
+            .home-card button {
+                background-color: #FF9248;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+    
+            .home-card button:hover {
+                background-color: #FF9248;
+            }
+    
+            footer {
+                text-align: center;
+                padding: 10px;
+                background-color: #003366;
+                color: white;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+    
+            /* Sidebar Styles for the navigation */
+            nav {
+                height: 100vh;
+                width: 250px;
+                background-color: #ecf0f1;
+                position: fixed;
+                top: 0;
+                left: 0;
+                color: #ecf0f1;
+            }
+    
+            .navbar ul li a.active {
+                background-color: #FF9248;
+            }
+    
+            /* Profile Card Styles */
+            .profile-card {
+                background-color: #ecf0f1;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-top: 20px;
+            }
+    
+            .profile-card-header {
+                font-size: 22px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+    
+            .profile-card-body {
+                font-size: 18px;
+            }
+    
+            .footer-separator {
+                margin: 20px 0;
+                height: 1px;
+                background-color: #dcdcdc;
+            }
+        </style>
+    </head>
+    
+<body>
+    <header class="header">
+        <div class="logo">HealMount Health Dashboard</div>
+    </header>
+
+    <nav>
+        <div class="logo-container">
+            <h1>HealMount</h1>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="appointments.html">Appointments</a></li>
+                <li><a href="patients.html" class="active">Patients</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Patients</h1>
+        <div class="profile-card">
+            <div class="profile-card-header">Patient List</div>
+            <div class="profile-card-body">
+                <p>No patients found</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer-separator"></div>
+    <footer>
+        <p>HealMount - All Rights Reserved</p>
+        <p><a href="contact.html">Contact Support</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

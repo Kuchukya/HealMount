@@ -1,0 +1,213 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #F7F4F0; /* Light background */
+    color: #314D6D; /* Main color */
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #003366; /* Blue color */
+    color: #F7F4F0; /* Light background */
+    padding: 40px 20px; /* Adjust top-bottom padding for thickness */
+    text-align: center;
+    font-size: 1.5em; /* Adjust the text size */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100px; /* Adjust the height of the header */
+}
+
+.header .logo {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Sidebar Navigation Bar */
+nav {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ecf0f1; /* Beige-sandy color */
+    padding: 20px 20px 20px 36px;
+    color: #003366; /* Main text color */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 0px; 
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #003366;
+    margin: 20px 0;
+    font-size: 1.3em;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+    color: #FF9248; /* Accent color */
+}
+
+.navbar button {
+    background-color: #FF9248;
+    color: #F7F4F0;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.navbar button:hover {
+    background-color: #FFD87E; /* Light accent color */
+}
+
+/* Main Content Area */
+main {
+    margin-left: 250px; /* Sidebar space */
+    margin-top: 100px; /* This creates the space between the header and main content */
+    padding: 20px; /* Reduced padding for a cleaner layout */
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    flex: 1;
+    margin-right: auto; /* Aligns the content to the right */
+    margin-bottom: 20px; /* Add some space at the bottom */
+}
+
+.content {
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Buttons */
+button {
+    background-color: #FF9248; /* Accent color */
+    color: #F7F4F0; /* Light background */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #FFD87E; /* Light accent color */
+}
+
+button:focus {
+    outline: none;
+}
+
+button.primary {
+    background-color: #FF9248; /* Accent color */
+    color: white;
+}
+
+button.primary:hover {
+    background-color: #FFD87E; /* Light accent color */
+}
+
+button.secondary {
+    background-color: #6A9E87; /* Secondary color */
+    color: white;
+    border: 2px solid #314D6D; /* Main color */
+}
+
+button.secondary:hover {
+    background-color: #B0C4D4; /* Neutral color */
+    color: #314D6D;
+}
+
+/* Footer */
+.footer {
+    background-color: #003366; /* Blue color */
+    color: #F7F4F0;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 1em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        position: relative;
+        height: auto;
+        padding: 10px;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
+        margin-top: 100px;
+    }
+
+    .navbar button {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .navbar ul li a {
+        font-size: 1em;
+        margin: 10px 0;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #314D6D;
+    color: #fff;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}

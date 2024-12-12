@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - HealMount</title>
+    <link rel="stylesheet" href="css/style.css">
+    <div class="header-separator"></div>
+
+
+    <style>
+        /* Basic reset and layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            font-family: Nunito, sans-serif;
+        }
+
+        /* Sidebar Styles */
+        nav {
+            height: 100vh;
+            width: 250px;
+            background-color: #ecf0f1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+        }
+
+        .logo-container {
+            padding: 20px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .logo-container h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 20px 0;
+        }
+
+        .navbar ul li a {
+            display: block;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #ecf0f1;
+            text-decoration: underline;
+        }
+
+        .navbar ul li a.active {
+            background-color: #FF9248;
+        }
+
+        /* Main content styles */
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            margin-top: 20px;
+        }
+
+        .profile-card {
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .profile-card-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .profile-card-body {
+            font-size: 18px;
+        }
+
+        .footer-separator {
+            margin: 20px 0;
+            height: 1px;
+            background-color: #dcdcdc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Payments Section */
+/* Card Input Section */
+#card-input-section {
+    display: none;
+    margin-top: 30px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 600px;  /* Limits the maximum width for better responsiveness */
+    margin-left: auto;
+    margin-right: auto; /* Centers the section horizontally */
+}
+
+/* Manage Cards Section */
+#manage-cards-section {
+    margin-top: 30px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 600px; /* Ensures both sections have the same width */
+    margin-left: auto;
+    margin-right: auto; /* Centers the section horizontally */
+}
+#card-input-section input,
+#manage-cards-section input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;  /* Add space between inputs */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+/* Optional: Adding hover effect to make the sections feel interactive */
+#card-input-section:hover, 
+#manage-cards-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Adding a subtle divider inside the section */
+#card-input-section .divider, 
+#manage-cards-section .divider {
+    margin: 20px 0;
+    height: 1px;
+    background-color: #ecf0f1;
+}
+
+/* Style for the header in sections */
+#card-input-section h2, 
+#manage-cards-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Adding some spacing to content inside the sections */
+#card-input-section .content, 
+#manage-cards-section .content {
+    padding: 10px 0;
+}
+
+/* Style for the header in sections */
+#card-input-section h2, 
+#manage-cards-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Adding some spacing to content inside the sections */
+#card-input-section .content, 
+#manage-cards-section .content {
+    padding: 10px 0;
+}
+
+
+/* Styling for saved cards */
+.saved-card {
+    background-color: #fff;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.saved-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.saved-card .card-details {
+    font-size: 16px;
+    color: #34495e;
+}
+
+.saved-card button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saved-card button:hover {
+    background-color: #c0392b;
+}
+
+.saved-card button:focus {
+    outline: none;
+}
+
+/* Optional: A separator between saved cards */
+.saved-card-separator {
+    margin-top: 15px;
+    height: 1px;
+    background-color: #dcdcdc;
+}
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">HealMount Health Dashboard</div>
+    </header>
+    <nav>
+        <div class="logo-container">
+            <h1>HealMount</h1>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="appointments.html">Appointments</a></li>
+                <li><a href="patients.html">Patients</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Dr. John Doe</h1>
+
+        <section class="profile-section">
+            <!-- Personal Information Section -->
+            <div class="profile-card">
+                <div class="profile-card-header">Personal Information</div>
+                <div class="profile-card-body">
+                    <label>Name:</label>
+                    <p id="name">John Doe</p>
+                    <label>Surname:</label>
+                    <p id="surname">Doe</p>
+                    <label>Email:</label>
+                    <p id="email">johndoe@example.com</p>
+                    <label>Phone:</label>
+                    <p id="phone">+123456789</p>
+                    <label>Qualifications:</label>
+                    <p id="qualifications">M.D., PhD in Neuroscience</p>
+                    <label>Specialties:</label>
+                    <p id="specialties">Neurology, Psychiatry</p>
+                    <label>Work History:</label>
+                    <p id="workHistory">5 years at City Hospital</p>
+                    <button id="editButton" onclick="editProfile()">Edit</button>
+
+                    <div id="editFields" style="display:none;">
+                        <label for="nameInput">Name:</label>
+                        <input type="text" id="nameInput" value="John Doe">
+                        <label for="surnameInput">Surname:</label>
+                        <input type="text" id="surnameInput" value="Doe">
+                        <label for="emailInput">Email:</label>
+                        <input type="email" id="emailInput" value="johndoe@example.com">
+                        <label for="phoneInput">Phone:</label>
+                        <input type="text" id="phoneInput" value="+123456789">
+                        <label for="qualificationsInput">Qualifications:</label>
+                        <input type="text" id="qualificationsInput" value="M.D., PhD in Neuroscience">
+                        <label for="specialtiesInput">Specialties:</label>
+                        <input type="text" id="specialtiesInput" value="Neurology, Psychiatry">
+                        <label for="workHistoryInput">Work History:</label>
+                        <input type="text" id="workHistoryInput" value="5 years at City Hospital">
+                        <button onclick="saveProfile()">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments Section -->
+            <div class="profile-card">
+                <div class="profile-card-header">Payments</div>
+                <div class="profile-card-body">
+                    <button id="addCard" onclick="toggleCardInput()">Add a Card</button>
+                    <button onclick="toggleManageCards()">Manage Cards</button>
+
+                    <!-- Card Input Section -->
+                    <div id="card-input-section">
+                        <label for="card-number">Card Number:</label>
+                        <input type="text" id="card-number" placeholder="Enter Card Number">
+                        <label for="card-name">Cardholder Name:</label>
+                        <input type="text" id="card-name" placeholder="Name on Card">
+                        <label for="card-cvv">CVV:</label>
+                        <input type="text" id="card-cvv" placeholder="CVV">
+                        <label for="card-expiration">Expiration Date:</label>
+                        <input type="text" id="card-expiration" placeholder="MM/YY">
+                        <button onclick="saveCard()">Save Card</button>
+                    </div>
+
+                    <!-- Manage Cards Section -->
+                    <div id="manage-cards-section" style="display: none;">
+                        <label>Saved Cards:</label>
+                        <div id="card-list"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-separator"></div>
+    <footer>
+        <p>HealMount - All Rights Reserved</p>
+        <p><a href="contact.html">Contact Support</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script>
+        let cardList = [];
+
+        // Toggle card input section visibility
+        function toggleCardInput() {
+            const cardInputSection = document.getElementById('card-input-section');
+            cardInputSection.style.display = cardInputSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Toggle manage cards section visibility
+        function toggleManageCards() {
+            const manageCardsSection = document.getElementById('manage-cards-section');
+            manageCardsSection.style.display = manageCardsSection.style.display === 'none' ? 'block' : 'none';
+            renderCardList();
+        }
+
+        // Save a card and add it to the card list
+        function saveCard() {
+            const cardNumber = document.getElementById('card-number').value;
+            const cardName = document.getElementById('card-name').value;
+            const cardCvv = document.getElementById('card-cvv').value;
+            const cardExpiration = document.getElementById('card-expiration').value;
+
+            if (cardNumber && cardName && cardCvv && cardExpiration) {
+                const newCard = {
+                    number: cardNumber,
+                    name: cardName,
+                    cvv: cardCvv,
+                    expiration: cardExpiration
+                };
+                cardList.push(newCard);
+                renderCardList();
+                clearCardInputs();
+            }
+        }
+
+        // Clear card input fields
+        function clearCardInputs() {
+            document.getElementById('card-number').value = '';
+            document.getElementById('card-name').value = '';
+            document.getElementById('card-cvv').value = '';
+            document.getElementById('card-expiration').value = '';
+        }
+
+        // Render the list of saved cards
+        function renderCardList() {
+            const cardListElement = document.getElementById('card-list');
+            cardListElement.innerHTML = '';
+            cardList.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('saved-card');
+                cardElement.innerHTML = `
+                    <span>${card.name} - ${card.number}</span>
+                    <button onclick="deleteCard(${index})">Delete</button>
+                `;
+                cardListElement.appendChild(cardElement);
+            });
+        }
+
+        // Delete a card from the list
+        function deleteCard(index) {
+            cardList.splice(index, 1);
+            renderCardList();
+        }
+    </script>
+</body>
+
+</html>

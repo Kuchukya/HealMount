@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - HealMount</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Adjustments for Appointments Page */
+        body {
+            display: flex;
+            font-family: Nunito, sans-serif;
+            margin-top: 100px; /* Adjusted margin to prevent content from being hidden under the fixed header */
+            flex-direction: row;
+            background-color: #ecf0f1;
+        }
+
+        /* Header */
+        .header {
+            background-color: #003366; /* Blue color */
+            color: #F7F4F0; /* Light background */
+            padding: 40px 20px; /* Adjust top-bottom padding for thickness */
+            text-align: center;
+            font-size: 1.5em; /* Adjust the text size */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            height: 100px; /* Adjust the height of the header */
+        }
+
+        .header .logo {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        /* Sidebar Styles */
+        nav.sidebar {
+            height: 100vh; /* Full height of the screen */
+            width: 250px;
+            background-color: #ecf0f1;
+            position: fixed;
+            top: 0px; /* Starts below the header */
+            left: 0;
+            color: #ecf0f1;
+        }
+
+        .logo-container {
+            padding: 20px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .logo-container h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 20px 0;
+        }
+
+        .navbar ul li a {
+            display: block;
+            color: #003366; /* Dark blue text */
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #34495e;
+            text-decoration: underline;
+            color: white; /* Text color on hover */
+        }
+
+        .navbar ul li a.active {
+            background-color: #FF9248;
+            color: white; /* Active link color */
+        }
+
+        /* Main content styles */
+        main.container {
+            margin-left: 250px; /* To leave space for the sidebar */
+            padding: 20px;
+            background-color: #ecf0f1;
+            min-height: 100vh;
+            margin-top: 100px; /* To prevent overlap with the fixed header */
+        }
+
+        /* Card Styles */
+        .home-card {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-card-header {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .home-card-body p {
+            margin-bottom: 10px;
+        }
+
+        .home-card button {
+            background-color: #FF9248;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .home-card button:hover {
+            background-color: #FF9248;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #FF9248;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #FF9248;
+        }
+
+        #appointments-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #appointments-list ul li {
+            background-color: #ffffff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #block-time-slot-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #block-time-slot-form input,
+        #block-time-slot-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #appointments-list button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #appointments-list button:hover {
+            background-color: #c0392b;
+        }
+
+        nav {
+            background-color: #ecf0f1;
+        }
+
+        nav .navbar ul li a {
+            color: white;
+        }
+
+        nav .navbar ul li a.active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">HealMount Health Dashboard</div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo-container">
+            <h1>HealMount</h1> <!-- Title of the platform -->
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="appointments.html" class="active">Appointments</a></li>
+                <li><a href="patients.html">Patients</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="dashboard-title">
+            <h2>Doctor Dashboard</h2> <!-- Title for the dashboard section -->
+        </section>
+
+        <h1>Appointments</h1>
+        <section>
+            <button id="view-appointments-btn">View All Appointments</button>
+            <button id="block-slot-btn">Block Time Slots</button>
+        </section>
+
+        <!-- Appointments List -->
+        <section id="appointments-list" style="display: none;">
+            <h2>Appointments</h2>
+            <ul id="appointments">
+                <!-- Appointments will be dynamically added here -->
+            </ul>
+        </section>
+
+        <!-- Block Time Slot Form -->
+        <section id="block-time-slot-form" style="display: none;">
+            <h2>Block Time Slot</h2>
+            <label for="date-picker">Select Date:</label>
+            <input type="text" id="date-picker" class="flatpickr">
+            <label for="time">Select Time:</label>
+            <input type="time" id="time">
+            <label for="description">Description:</label>
+            <textarea id="description" rows="4" cols="50"></textarea>
+            <button id="save-slot-btn">Save Slot</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>HealMount - All Rights Reserved</p>
+        <p><a href="contact.html">Contact Support</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Mock Database for Appointments
+        let appointments = [
+            { id: 1, patient: 'John Doe', date: '2024-12-15', time: '10:00 AM' },
+            { id: 2, patient: 'Jane Smith', date: '2024-12-16', time: '2:00 PM' }
+        ];
+
+        // Initialize flatpickr
+        flatpickr("#date-picker", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+        });
+
+        // View Appointments Button
+        document.getElementById('view-appointments-btn').addEventListener('click', function () {
+            const appointmentsList = document.getElementById('appointments');
+            appointmentsList.innerHTML = ''; // Clear previous list
+            appointments.forEach(function (appointment) {
+                let li = document.createElement('li');
+                li.innerHTML = `${appointment.patient} - ${appointment.date} at ${appointment.time}
+                    <button onclick="cancelAppointment(${appointment.id})">Cancel</button>`;
+                appointmentsList.appendChild(li);
+            });
+            document.getElementById('appointments-list').style.display = 'block';
+            document.getElementById('block-time-slot-form').style.display = 'none';
+        });
+
+        // Block Time Slot Button
+        document.getElementById('block-slot-btn').addEventListener('click', function () {
+            document.getElementById('appointments-list').style.display = 'none';
+            document.getElementById('block-time-slot-form').style.display = 'block';
+        });
+
+        // Save Slot Button
+        document.getElementById('save-slot-btn').addEventListener('click', function () {
+            const date = document.getElementById('date-picker').value;
+            const time = document.getElementById('time').value;
+            const description = document.getElementById('description').value;
+            if (date && time && description) {
+                appointments.push({ id: appointments.length + 1, patient: 'New Patient', date, time });
+                alert('Time Slot Blocked');
+                document.getElementById('block-time-slot-form').reset();
+                document.getElementById('block-time-slot-form').style.display = 'none';
+                document.getElementById('appointments-list').style.display = 'block';
+            } else {
+                alert('Please fill all fields');
+            }
+        });
+
+        // Cancel Appointment Function
+        function cancelAppointment(id) {
+            appointments = appointments.filter(appointment => appointment.id !== id);
+            alert('Appointment canceled');
+            document.getElementById('view-appointments-btn').click(); // Refresh list
+        }
+    </script>
+</body>
+
+</html>
